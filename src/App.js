@@ -30,11 +30,23 @@ function App() {
 		]
 	)
 
+  // Delete a task
+  // This will be passed on from here to Tasks component then to Task
+  // We could have used redux to access useState in the Task component
+  const DeleteTask = (id) => {
+    //console.log('delete task id:', id)
+    // Show task that not equal to the passed id
+    // We can't delete cause task are immutable 
+    setTaks(tasks.filter( (task) => task.id !=id ));
+  }
 
   return (
     <div className="App">
       <Header />
-      <Tasks tasks={tasks} />
+      { tasks.length > 0 ?
+        <Tasks tasks={tasks} onDelete={DeleteTask}/>
+        : 'There is no task at the moment'
+      }
     </div>
   );
 }
