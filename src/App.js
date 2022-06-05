@@ -37,14 +37,27 @@ function App() {
     //console.log('delete task id:', id)
     // Show task that not equal to the passed id
     // We can't delete cause task are immutable 
-    setTaks(tasks.filter( (task) => task.id !=id ));
+    setTaks(tasks.filter( (task) => task.id !==id ));
   }
+
+
+/*
+Function to set reminder for each appointment
+Every time you double click the appointment it will add the strip with color on the left side
+*/
+const toggleReminder = (id) =>{
+  //console.log('toggle reminder', id);
+  setTaks(tasks.map( (task) => task.id === id ? { ...task, reminder: !task.reminder } : task));
+}
 
   return (
     <div className="App">
       <Header />
       { tasks.length > 0 ?
-        <Tasks tasks={tasks} onDelete={DeleteTask}/>
+        <Tasks 
+             tasks={tasks}
+             onDelete={DeleteTask} 
+             toggleReminder={toggleReminder}/>
         : 'There is no task at the moment'
       }
     </div>
