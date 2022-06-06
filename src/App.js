@@ -5,6 +5,7 @@ import Tasks from "./components/Tasks";
 import AddTask from './components/AddTask';
 import Footer from './components/Footer';
 import About from './components/About';
+import TaskDetails from './components/TaskDetails';
 
 
 function App() {
@@ -132,6 +133,7 @@ const toggleReminder = async (id) =>{
         </>
           } />
           <Route path='/about' element={<About />} />
+          <Route path='/task/:id' element={<TaskDetails />} />
       </Routes>
       <Footer />
     </div>
