@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import Header from "./components/Header"
 import Tasks from "./components/Tasks";
 import AddTask from './components/AddTask';
+import Footer from './components/Footer';
+
 
 function App() {
 
@@ -120,6 +122,8 @@ const toggleReminder = async (id) =>{
              toggleReminder={toggleReminder}/>
         : 'There is no task at the moment'
       }
+
+      <Footer />
     </div>
   );
 }
