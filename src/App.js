@@ -31,6 +31,19 @@ function App() {
 		]
 	)
 
+  // Add task
+  const addTask = (task) => {
+    //console.log(task);
+    const id = Math.floor(Math.random() * 1000)+1
+
+    // create a task object
+    const newTask = {id, ...task}
+
+    //Add the new create task to existing tasks
+    setTaks([...tasks, newTask])
+
+  }
+
   // Delete a task
   // This will be passed on from here to Tasks component then to Task
   // We could have used redux to access useState in the Task component
@@ -54,7 +67,7 @@ const toggleReminder = (id) =>{
   return (
     <div className="App">
       <Header />
-      <AddTask />
+      <AddTask onAdd={addTask}/>
       { tasks.length > 0 ?
         <Tasks 
              tasks={tasks}
