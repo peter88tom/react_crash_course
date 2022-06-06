@@ -4,6 +4,7 @@ import Tasks from "./components/Tasks";
 import AddTask from './components/AddTask';
 
 function App() {
+
   // show/hide form for adding task
   const [showAddTask, setShowAddTask] = useState(false)
 
@@ -68,7 +69,7 @@ const toggleReminder = (id) =>{
 
   return (
     <div className="App">
-      <Header onAdd={() => setShowAddTask(!showAddTask)}/>
+      <Header onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask}/>
      {showAddTask && <AddTask onAdd={addTask}/> }
       { tasks.length > 0 ?
         <Tasks 
