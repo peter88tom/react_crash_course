@@ -3,10 +3,10 @@ import Task from "./Task"
 const Tasks = ({tasks, onDelete, toggleReminder}) =>{
 	return (
 		<>
-		{tasks.map((task) => (
+		{tasks.map((task, index) => (
 			// output task component
 			<Task 
-				key={task.id} 
+				key={index} 
 				task={task} 
 				onDelete={onDelete} 
 				toggleReminder={toggleReminder}/>
