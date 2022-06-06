@@ -4,6 +4,8 @@ import Tasks from "./components/Tasks";
 import AddTask from './components/AddTask';
 
 function App() {
+  // show/hide form for adding task
+  const [showAddTask, setShowAddTask] = useState(false)
 
   // Make tasks list to be part of the componet
 	// If we want to change part of the component we can use setTasks
@@ -66,8 +68,8 @@ const toggleReminder = (id) =>{
 
   return (
     <div className="App">
-      <Header />
-      <AddTask onAdd={addTask}/>
+      <Header onAdd={() => setShowAddTask(!showAddTask)}/>
+     {showAddTask && <AddTask onAdd={addTask}/> }
       { tasks.length > 0 ?
         <Tasks 
              tasks={tasks}
