@@ -54,7 +54,10 @@ function App() {
   // Delete a task
   // This will be passed on from here to Tasks component then to Task
   // We could have used redux to access useState in the Task component
-  const DeleteTask = (id) => {
+  const DeleteTask = async (id) => {
+    await fetch(`http://localhost:5000/tasks/${id}`, {
+      method: 'DELETE'
+    });
     //console.log('delete task id:', id)
     // Show task that not equal to the passed id
     // We can't delete cause task are immutable 
