@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams, Navigate } from 'react-router-dom'
+import { useParams, Navigate, useNavigate} from 'react-router-dom'
 
 
 function TaskDetails() {
@@ -9,6 +9,8 @@ function TaskDetails() {
 
 	const params = useParams()
 
+	const navigate = useNavigate()
+
 
 	useEffect( () => {
 		const fetchTask = async () =>{
@@ -17,7 +19,8 @@ function TaskDetails() {
 			const data = await res.json()
 
 			if (res.status === 404){
-				setError('Task not found')
+				//setError('Task not found')
+				navigate('/')
 			}
 
 			setTaks(data)
@@ -29,9 +32,9 @@ function TaskDetails() {
 	})
 
 	// Redirect to home page if error
-	if (error){
-		return <Navigate to='/' />
-	}
+	// if (error){
+	// 	return <Navigate to='/' />
+	// }
 
 	return loading ? (
 		<h3>...Loading</h3>
