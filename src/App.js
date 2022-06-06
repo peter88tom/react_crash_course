@@ -37,6 +37,15 @@ function App() {
    return data
 }
 
+// Fetch single task
+const fetchTask = async (id) => {
+  const res =  await fetch(`http://localhost:5000/tasks/${id}`)
+
+  const data = await res.json();
+
+  return data
+}
+
 
   // Add task
   const addTask = async (task) => {
@@ -78,9 +87,26 @@ function App() {
 Function to set reminder for each appointment
 Every time you double click the appointment it will add the strip with color on the left side
 */
-const toggleReminder = (id) =>{
-  //console.log('toggle reminder', id);
-  setTaks(tasks.map( (task) => task.id === id ? { ...task, reminder: !task.reminder } : task));
+const toggleReminder = async (id) =>{
+  // get single task to toggle
+  const taskToToggle  = await fetchTask(id)
+
+  // create a new task by spreading accross and setting the reminder not equal to the previous one
+  const updatedTask = { ...taskToToggle, reminder: !taskToToggle.reminder}
+
+  // set the updates
+  const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+    method: 'PUT',
+    headers:{
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify(updatedTask)
+  })
+
+  const data = await res.json()
+
+
+  setTaks(tasks.map( (task) => task.id === id ? { ...task, reminder: data.reminder } : task))
 }
 
   return (
